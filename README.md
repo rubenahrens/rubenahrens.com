@@ -1,2 +1,4 @@
 # rubenahrens.com
- Eigen website
+Personal website
+
+Automatically extracts content from CV tex-file
