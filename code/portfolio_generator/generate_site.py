@@ -217,7 +217,7 @@ def generate_documents_html():
     """Generate HTML for documents section."""
     return '''
             <div class="card">
-                <h2>Documenten</h2>
+                <h2>Documents</h2>
                 <div class="documents">
                     <a href="docs/CV.pdf" class="document-link">
                         <i class="fas fa-file-alt"></i> Curriculum Vitae
