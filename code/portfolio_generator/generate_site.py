@@ -177,11 +177,32 @@ def generate_projects_html(projects):
                     </div>
                 </div>''' for project in projects)
 
-def generate_contact_html():
+def generate_contact_html(personal_info, privacy=True):
     """Generate HTML for contact information."""
-    return '''
-        <a href="https://www.linkedin.com/in/rubenahrens/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/rubenahrens" target="_blank"><i class="fab fa-github"></i> GitHub</a>'''
+    contact_html = '''
+        <a href="https://www.linkedin.com/in/ruben-ahrens/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/rubenahrens" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        '''
+    
+    # Add email if available
+    if personal_info.get('email'):
+        contact_html += f'''
+        <a href="mailto:{personal_info['email']}"><i class="fas fa-envelope"></i> {personal_info['email']}</a>
+        '''
+    
+    # Add phone if available
+    if personal_info.get('phone') and privacy == False:
+        contact_html += f'''
+        <a href="tel:{personal_info['phone']}"><i class="fas fa-phone"></i> {personal_info['phone']}</a>
+        '''
+    
+    # Add location if available
+    if personal_info.get('location'):
+        contact_html += f'''
+        <span><i class="fas fa-map-marker-alt"></i> {personal_info['location']}</span>
+        '''
+    
+    return contact_html
 
 def generate_photo_html(has_photo):
     """Generate HTML for profile photo."""
@@ -509,7 +530,7 @@ def generate_header_section(info):
             {generate_photo_html(bool(info['photo']))}
             <h1>{info['name']}</h1>
             <div class="contact-info">
-                {generate_contact_html()}
+                {generate_contact_html(info)}
             </div>
         </div>
     </header>'''
